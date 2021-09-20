@@ -12,12 +12,18 @@ class ArticlesController < ApplicationController
   end
 
   def create #  Instantaites article and attempts to save it
-    @article = Article.new(title: "...", body: '...')
+    @article = Article.new(article_params)
 
     if @article.save # Saves article, if successful redirects to article show page
       redirect_to @article
     else # If unsuccesful, redisplay form
       render :new 
+    end
   end
+
+  private
+    def article_params
+      params.require(:article).permit(:title, :body)
+    end
 
 end
