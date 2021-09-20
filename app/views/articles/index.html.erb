@@ -1,2 +1,9 @@
-<h1>Hello, Rails!</h1>
+<h1>Articles</h1>
 
+<ul>
+<% @articles.each do |article| #Loops through each article and displays the title %> 
+    <li>
+    <%= article.title %>
+    </li>
+<% end %>
+</ul>
