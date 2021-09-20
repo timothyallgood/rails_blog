@@ -21,6 +21,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit # Finds article to edit for edit form
+    @article = Article.find(params[:id])
+  end
+
+  def update # Finds article and attempts to update it
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params) # Updates article, if successful redirects to article show page
+      redirect_to @article
+    else # If unsuccesful, redisplay form
+      render :edit
+    end
+  end
+
   private
     def article_params
       params.require(:article).permit(:title, :body)
